@@ -35,8 +35,8 @@ services:
           
     depends_on:
       - devopsdb
-
- volumes:
+      
+volumes:
    mydbvolume:
   
 
