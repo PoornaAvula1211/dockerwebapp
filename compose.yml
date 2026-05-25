@@ -2,25 +2,42 @@ version: "3.9"
 
 services:
   devopsdb:
-    image: poornaavula1211/javaproject:db
+    image: poornaavula1211/myjavaproj:dbimage
     ports:
       - "3306:3306"
     deploy:
       replicas: 3
-    networks:
-      - mynetwork
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 128M
+        reservations:
+          cpus: "0.25"
+          memory: 64M
+    volumes:
+      - mydbvolume:/opt/db/data
+        
+    
 
   application:
-    image: poornaavula1211/javaproject:app
+    image: poornaavula1211/myjavaproj:appimage
     ports:
       - "1111:8080"
     deploy:
       replicas: 3
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 128M
+        reservations:
+          cpus: "0.25"
+          memory: 64M
+          
     depends_on:
       - devopsdb
-    networks:
-      - mynetwork
 
-networks:
-  mynetwork:
-    driver: overlay
+ volumes:
+   mydbvolume:
+  
+
+
