@@ -2,14 +2,14 @@ version: "3.9"
 
 services:
   devopsdb:
-    image: poornaavula1211/myjavaproj:dbimage
+    image: poornaavula1211/myfp:dbimg
     ports:
       - "3306:3306"
     deploy:
       resources:
         limits:
           cpus: "0.5"
-          memory: 128M
+          memory: 350M
         reservations:
           cpus: "0.25"
           memory: 64M
@@ -19,14 +19,14 @@ services:
     
 
   application:
-    image: poornaavula1211/myjavaproj:appimage
+    image: poornaavula1211/myfp:appimg
     ports:
       - "1111:8080"
     deploy:
       resources:
         limits:
           cpus: "0.5"
-          memory: 128M
+          memory: 350M
         reservations:
           cpus: "0.25"
           memory: 64M
