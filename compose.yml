@@ -6,7 +6,11 @@ services:
     ports:
       - "3306:3306"
     deploy:
-      replicas: 3
+      mode: replicated
+      replicas: 1  # ← CHANGE: Only ONE database instance
+      placement:
+        constraints:
+          - node.role == manager  # Keep DB on manager node
       resources:
         limits:
           cpus: "0.5"
@@ -16,14 +20,13 @@ services:
           memory: 64M
     volumes:
       - mydbvolume:/var/lib/mysql/
-        
     
-
   application:
     image: poornaavula1211/myfp:app
     ports:
       - "1111:8080"
     deploy:
+      mode: replicated
       replicas: 3
       resources:
         limits:
@@ -32,12 +35,9 @@ services:
         reservations:
           cpus: "0.25"
           memory: 64M
-          
     depends_on:
       - devopsdb
-      
+
 volumes:
-   mydbvolume:
-  
-
-
+  mydbvolume:
+    driver: local
