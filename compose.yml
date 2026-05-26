@@ -14,7 +14,7 @@ services:
           cpus: "0.25"
           memory: 64M
     volumes:
-      - mydbvolume:/var/lib/postgresql/data
+      - mydbvolume:/var/lib/mysql
         
     
 
