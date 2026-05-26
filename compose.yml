@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   devopsdb:
-    image: poornaavula1211/myfp:dbimg
+    image: poornaavula1211/myfp:db
     ports:
       - "3306:3306"
     deploy:
@@ -19,7 +19,7 @@ services:
     
 
   application:
-    image: poornaavula1211/myfp:appimg
+    image: poornaavula1211/myfp:app
     ports:
       - "1111:8080"
     deploy:
